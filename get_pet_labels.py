@@ -65,6 +65,10 @@ def get_pet_labels(image_dir):
 #    for i in range(len(in_files)):
 #        results_dic[in_files[i]] = ' '.join(in_files[i].split('_')[:-1])
 
+# Iterate through the filenames in in_files.  For each, create a key from the filename and
+# a value from splitting the filename, truncating the filename number and extension, then
+# joining together whats left, converting to lower case and striping leading/training spaces
+# Bosten_terrier_02259.jpg ==> results_dic{Bosten_terrier_02259.jpg, [bosten terrier]}
     for pet_file in in_files:
 #        pet_label = [' '.join(pet_file.split('_')[:-1])]
         results_dic[pet_file] = [' '.join(pet_file.split('_')[:-1]).lower().strip()]
