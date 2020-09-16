@@ -40,20 +40,55 @@ def get_pet_labels(image_dir):
       List. The list contains for following item:
          index 0 = pet image label (string)
     """
-    results_dic = {}
+#    results_dic = {}
 
 # Suggestion from the field that the newer os.scandir is preferable, but listdir
 # is what is imported, so using it.
+    try:
+      in_files = listdir(image_dir)
+    except:
+      print('Exception: could not open ', image_dir)
 
-    in_files = listdir(image_dir)
-    print(in_files[0])
+#    print('All of in_files',in_files)
+#    for item in in_files:
+#      print(item, ' '.join(item.split('_')[:-1]).lower().strip())
 
-    for filename in listdir(image_dir):
-        if filename.endswith(".jpg"):
-            print(path.join(image_dir, filename))
-        else:
-            continue
+#for item in in_files:
+#    mydict = dict(enumerate(line.strip() for line in f3data))
+    results_dic = dict(enumerate(' '.join(item.split('_')[:-1]).lower().strip() for item in in_files))
+
+#      results_dic = ' '.join(item.split('_')[:-1]).lower().strip()
+#    pet_label = ''
+
+#    pet_label = in_files[2].split('_')
+#    print('lop off list ', pet_label[:-1] )
+# .join() with lists
+#    separator = ', '
+#    pet_label_join = ' '.join(pet_label[:-1])
+#    pet_label_lower = pet_label_join.lower()
+
+#    print('All in one line ', ' '.join(pet_label[:-1]).lower())
+#    print(join(pet_label[:-1]))
+#    print(type(in_files))
+
+#    file_set = set(in_files)
+#    file_list = list(file_set)
+#    results_dic = file_list
+
+#    results_dic = list(set(in_files))
+
+
+#    print(results_dic[2])
+
+#    for filename in listdir(image_dir):
+#        if filename.endswith(".jpg"):
+#            print(path.join(image_dir, filename))
+#        else:
+#            continue
+
+#    if in_files[0] not in results_dic:
+#      results_dic[in_files[idx]] = [pet_label]
 
     # Replace None with the results_dic dictionary that you created with this
     # function
-    return None
+    return results_dic
