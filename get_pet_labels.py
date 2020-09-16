@@ -40,7 +40,7 @@ def get_pet_labels(image_dir):
       List. The list contains for following item:
          index 0 = pet image label (string)
     """
-#    results_dic = {}
+    results_dic = {}
 
 # Suggestion from the field that the newer os.scandir is preferable, but listdir
 # is what is imported, so using it.
@@ -49,13 +49,29 @@ def get_pet_labels(image_dir):
     except:
       print('Exception: could not open ', image_dir)
 
+#    file_set = set(' '.join(item.split('_')[:-1]).lower().strip()
+
+
+    file_set = set(in_files)
+    file_list = list(file_set)
+
 #    print('All of in_files',in_files)
 #    for item in in_files:
-#      print(item, ' '.join(item.split('_')[:-1]).lower().strip())
+#      print(item)
+#      print(item.split('_'))
+#      print(item.split('_')[:-1])
+#      print(' '.join(item.split('_')[:-1]))
+
+#    for i in range(len(in_files)):
+#        results_dic[in_files[i]] = ' '.join(in_files[i].split('_')[:-1])
+
+    for i in range(len(in_files)):
+        results_dic[in_files[i]] = ' '.join(in_files[i].split('_')[:-1])
 
 #for item in in_files:
 #    mydict = dict(enumerate(line.strip() for line in f3data))
-    results_dic = dict(enumerate(' '.join(item.split('_')[:-1]).lower().strip() for item in in_files))
+
+#    results_dic = dict(enumerate(' '.join(item.split('_')[:-1]).lower().strip() for item in # in_files))
 
 #      results_dic = ' '.join(item.split('_')[:-1]).lower().strip()
 #    pet_label = ''
