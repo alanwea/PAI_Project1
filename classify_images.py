@@ -35,9 +35,9 @@ images_dir = 'C:\\Users\\Alanwea\\Dropbox\\Udacity\\PythonAI\\Project1\\workspac
 results_dic = ''
 model = ''
 
-print('Testing time functions - 2 sec sleep')
+print('Testing time functions - 0 sec sleep')
 start_time = time()
-sleep(2)
+sleep(0)
 end_time = time()
 tot_time = end_time - start_time
 print('Elapsed time is', end_time - start_time) # round?  otherwise get a really long number

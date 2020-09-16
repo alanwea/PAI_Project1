@@ -45,6 +45,9 @@ def get_pet_labels(image_dir):
 # Suggestion from the field that the newer os.scandir is preferable, but listdir
 # is what is imported, so using it.
 
+    in_files = listdir(image_dir)
+    print(in_files[0])
+
     for filename in listdir(image_dir):
         if filename.endswith(".jpg"):
             print(path.join(image_dir, filename))
