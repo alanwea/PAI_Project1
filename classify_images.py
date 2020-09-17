@@ -82,4 +82,10 @@ def classify_images(images_dir, results_dic, model):
      Returns:
            None - results_dic is mutable data type so no return needed.
     """
+    model_label = classifier(images_dir, model)
+
+    #NEW - index 1 = classifier label (string)
+    #NEW - index 2 = 1/0 (int)  where 1 = match between pet image
+    #results_dic extend function
+
     None
