@@ -69,9 +69,13 @@ def get_pet_labels(image_dir):
 # a value from splitting the filename, truncating the filename number and extension, then
 # joining together whats left, converting to lower case and striping leading/training spaces
 # Bosten_terrier_02259.jpg ==> results_dic{Bosten_terrier_02259.jpg, [bosten terrier]}
+#    for pet_file in in_files:
+#        pet_label = [' '.join(pet_file.split('_')[:-1])]
+#        results_dic[pet_file] = [' '.join(pet_file.split('_')[:-1]).lower().strip()]
+
     for pet_file in in_files:
 #        pet_label = [' '.join(pet_file.split('_')[:-1])]
-        results_dic[pet_file] = [' '.join(pet_file.split('_')[:-1]).lower().strip()]
+        results_dic[pet_file] = ' '.join(pet_file.split('_')[:-1]).lower().strip()
 
 #for item in in_files:
 #    mydict = dict(enumerate(line.strip() for line in f3data))

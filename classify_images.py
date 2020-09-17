@@ -82,7 +82,27 @@ def classify_images(images_dir, results_dic, model):
      Returns:
            None - results_dic is mutable data type so no return needed.
     """
-    model_label = classifier(images_dir, model)
+    print('images dir', images_dir)
+#    print(results_dic)
+    print(model)
+
+#          if in_files[idx] not in results_dic:
+#          results_dic[in_files[idx]] = [pet_label]
+
+    for key in results_dic:
+      full_path = images_dir + key
+      model_label = classifier(full_path, model)
+      model_label_normalized = model_label.lower().strip()
+      dict_list = str(results_dic[key])
+
+      if dict_list in model_label_normalized:
+        match = int(1)
+      else:
+        match = int(0)
+#      results_dic[key].extend(model_label_normalized, match)
+      results_dic[key] = model_label_normalized
+      results_dic[key] = match
+      print(f'Image {full_path} identified as {model_label_normalized}  {match}')
 
     #NEW - index 1 = classifier label (string)
     #NEW - index 2 = 1/0 (int)  where 1 = match between pet image
