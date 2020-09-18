@@ -89,20 +89,27 @@ def classify_images(images_dir, results_dic, model):
 #          if in_files[idx] not in results_dic:
 #          results_dic[in_files[idx]] = [pet_label]
 
+    break_count = 0
     for key in results_dic:
+      if break_count <=3:
+        break
       full_path = images_dir + key
       model_label = classifier(full_path, model)
       model_label_normalized = model_label.lower().strip()
-      dict_list = str(results_dic[key])
 
-      if dict_list in model_label_normalized:
+      dict_list = results_dic[key]
+
+      if dict_list[0] in model_label_normalized:
         match = int(1)
       else:
         match = int(0)
 #      results_dic[key].extend(model_label_normalized, match)
-      results_dic[key] = model_label_normalized
-      results_dic[key] = match
+      dict_list.append(model_label_normalized)
+      dict_list.extend(model_label_normalized)
+      dict_list.extend(str(match))
+      results_dic[key] = dict_list
       print(f'Image {full_path} identified as {model_label_normalized}  {match}')
+      break_count+=1
 
     #NEW - index 1 = classifier label (string)
     #NEW - index 2 = 1/0 (int)  where 1 = match between pet image

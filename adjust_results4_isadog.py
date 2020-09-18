@@ -38,7 +38,7 @@
 #       data type so no return is needed.
 #
 def adjust_results4_isadog(results_dic, dogfile):
-  print('in adjust_results4_isadog', results_dic)
+  print('in adjust_results4_isadog', results_dic, dogfile)
   """
     Adjusts the results dictionary to determine if classifier correctly
     classified images 'as a dog' or 'not a dog' especially when not a match.
@@ -68,4 +68,27 @@ def adjust_results4_isadog(results_dic, dogfile):
     Returns:
            None - results_dic is mutable data type so no return needed.
 """
+  dognames_dic = dict()
+# Populate dognames_dic from the dognames file
+  with open(dogfile, "r") as infile:
+    dognames_dic = [(line.rstrip() for line in infile)]
+
+
+  with open(dogfile, "r") as infile:
+        # Reads in dognames from first line in file
+        line = infile.readline().rstrip("\n")
+
+        for key in results_dic:
+          # Get a key in results_dic
+          if results_dic[key][0] in dognames_dic:
+            # if the dog name value associated with the key is in the dognames file,
+            # then the results_dic record has been verified as being a dog
+#             if results_dic[key][1] in dognames_dic:
+                results_dic[key].extend((1, 1))
+          else:
+            results_dic[key].extend((0, 0))
+
+#          res = next((sub for sub in results_dic if sub['is'] == line), None)
+#        print(res)
+
   None

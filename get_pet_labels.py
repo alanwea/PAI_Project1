@@ -75,7 +75,7 @@ def get_pet_labels(image_dir):
 
     for pet_file in in_files:
 #        pet_label = [' '.join(pet_file.split('_')[:-1])]
-        results_dic[pet_file] = ' '.join(pet_file.split('_')[:-1]).lower().strip()
+        results_dic[pet_file] = [' '.join(pet_file.split('_')[:-1]).lower().strip()]
 
 #for item in in_files:
 #    mydict = dict(enumerate(line.strip() for line in f3data))
