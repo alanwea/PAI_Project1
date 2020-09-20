@@ -101,12 +101,13 @@ def calculates_results_stats(results_dic):
             results_stats_dic['n_correct_notdogs'] += 1 # C/correctly classified NON-dog images - [key][3] and [key][4] == 0
         if results_dic[key][2] == 1 and results_dic[key][3] == 1:
             results_stats_dic['n_correct_breed'] += 1 # E/number of correctly classified dog breeds [key][3] and [key][2] == 1
-    break_loop += 1
+        break_loop += 1
 
     results_stats_dic['pct_match'] = results_stats_dic['n_match'] / results_stats_dic['n_images'] * 100 # percentage of correct matches: Y/Z * 100
     results_stats_dic['pct_correct_dogs'] = results_stats_dic['n_correct_dogs'] / results_stats_dic['n_dogs_img'] * 100 # percentage of correctly classified dogs: A/B * 100
     results_stats_dic['pct_correct_breed'] = results_stats_dic['n_correct_breed'] / results_stats_dic['n_dogs_img'] * 100 # percentage of correctly classified dog breeds: E/B * 100
-    results_stats_dic['pct_correct_notdogs'] = results_stats_dic['n_correct_notdogs'] / results_stats_dic['n_notdogs_img'] * 100 # percentage of correctly classified NON-dogs: C/D * 100
+    results_stats_dic['pct_correct_notdogs'] = results_stats_dic['n_correct_notdogs'] / results_stats_dic['n_notdogs_img'] * 100 if results_stats_dic['n_notdogs_img'] != 0 else 0
+    # percentage of correctly classified NON-dogs: C/D * 100
 
     # Replace None with the results_stats_dic dictionary that you created with
     # this function

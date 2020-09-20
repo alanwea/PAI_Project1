@@ -262,8 +262,10 @@ def check_calculating_results(results_dic, results_stats_dic):
 
         # Interates through results_dic dictionary to recompute the statistics
         # outside of the calculates_results_stats() function
+        break_loop = 0
         for key in results_dic:
-
+            if break_loop > 6:
+                break
             # match (if dog then breed match)
             if results_dic[key][2] == 1:
 
@@ -301,7 +303,7 @@ def check_calculating_results(results_dic, results_stats_dic):
                     # NOT dog (classifier label)
                     if results_dic[key][4] == 0:
                         n_class_cnotd += 1
-
+                break_loop += 1
 
         # calculates statistics based upon counters from above
         n_pet_notd = n_images - n_pet_dog
