@@ -73,7 +73,6 @@ def main():
     # Function that checks Pet Images in the results Dictionary using results
     check_creating_pet_image_labels(results)
 
-
     # TODO 3: Define classify_images function within the file classiy_images.py
     # Once the classify_images function has been defined replace first 'None'
     # in the function call with in_arg.dir and replace the last 'None' in the
@@ -87,7 +86,6 @@ def main():
     # Function that checks Results Dictionary using results
     check_classifying_images(results)
 
-
     # TODO 4: Define adjust_results4_isadog function within the file adjust_results4_isadog.py
     # Once the adjust_results4_isadog function has been defined replace 'None'
     # in the function call with in_arg.dogfile  Once you have done the
@@ -96,6 +94,7 @@ def main():
     # Adjusts the results dictionary to determine if classifier correctly
     # classified images as 'a dog' or 'not a dog'. This demonstrates if
     # model can correctly classify dog images as dogs (regardless of breed)
+
     adjust_results4_isadog(results, in_arg.dogfile)
 
     # Function that checks Results Dictionary for is-a-dog adjustment using results
@@ -127,6 +126,7 @@ def main():
     end_time = time()
 
     # TODO 0: Computes overall runtime in seconds & prints it in hh:mm:ss format
+    # Calculation seems web ubiquitous, but referencing https://www.w3resource.com/python-exercises/python-basic-exercise-65.php
     tot_time = end_time - start_time #calculate difference between end time and start time
     print("\n** Total Elapsed Runtime:",
           str(int((tot_time/3600)))+":"+str(int((tot_time%3600)/60))+":"
