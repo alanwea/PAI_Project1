@@ -71,6 +71,7 @@ def calculates_results_stats(results_dic):
 
     results_stats_dic = dict()
 
+# zeros out initial counts - do it shorter?
     results_stats_dic['n_dogs_img'] = 0 # B/number of dog images: [key][3] == 1
     results_stats_dic['n_images'] = len(results_dic) # Z/number of images - length of results_dic
     results_stats_dic['n_notdogs_img'] = 0 # D/NON-dog images: #images - #dog images OR [key][3] == 0
@@ -79,16 +80,30 @@ def calculates_results_stats(results_dic):
     results_stats_dic['n_correct_notdogs'] = 0 # C/correctly classified NON-dog images - [key][3] and [key][4] == 0
     results_stats_dic['n_correct_breed'] = 0 # E/number of correctly classified dog breeds [key][3] and [key][2] == 1
 
-    for key in results_dic:
-        results_stats_dic['n_dogs_img'] = 0 # B/number of dog images: [key][3] == 1
-        results_stats_dic['n_images'] = len(results_dic) # Z/number of images - length of results_dic
-        results_stats_dic['n_notdogs_img'] = 0 # D/NON-dog images: #images - #dog images OR [key][3] == 0
-        results_stats_dic['n_match'] = 0 # Y/pet & classifier labels match: [key][2] == 1
-        results_stats_dic['n_correct_dogs'] = 0 # A/correct dog matches - [key][3] and [key][4] == 1
-        results_stats_dic['n_correct_notdogs'] = 0 # C/correctly classified NON-dog images - [key][3] and [key][4] == 0
-        results_stats_dic['n_correct_breed'] = 0 # E/number of correctly classified dog breeds [key][3] and [key][2] == 1
+# Now fill in all of the values as we run through the dict
 
-    results_stats_dic['pct_match'] = '' # percentage of correct matches: Y/Z * 100
+    results_stats_dic['n_images'] = len(results_dic) # Z/number of images - length of results_dic
+
+    break_loop = 0
+    for key in results_dic:
+        if break_loop > 6:
+            break
+        if results_dic[key][3] == 1:
+            results_stats_dic['n_dogs_img'] += 1  # B/number of dog images: [key][3] == 1
+        #results_stats_dic['n_images'] = len(results_dic) # Z/number of images - length of results_dic
+        if results_dic[key][3] == 0:
+            results_stats_dic['n_notdogs_img'] += 1 # D/NON-dog images: #images - #dog images OR [key][3] == 0
+        if results_dic[key][2] == 1:
+            results_stats_dic['n_match'] += 1  # Y/pet & classifier labels match: [key][2] == 1
+        if results_dic[key][3] == 1 and results_dic[key][4] == 1:
+            results_stats_dic['n_correct_dogs'] += 1 # A/correct dog matches - [key][3] and [key][4] == 1
+        if results_dic[key][3] == 0 and results_dic[key][4] == 0:
+            results_stats_dic['n_correct_notdogs'] += 1 # C/correctly classified NON-dog images - [key][3] and [key][4] == 0
+        if results_dic[key][2] == 1 and results_dic[key][3] == 1:
+            results_stats_dic['n_correct_breed'] += 1 # E/number of correctly classified dog breeds [key][3] and [key][2] == 1
+    break_loop += 1
+
+    results_stats_dic['pct_match'] = results_stats_dic['n_match'] / results_stats_dic['n_images'] * 100 # percentage of correct matches: Y/Z * 100
     results_stats_dic['pct_correct_dogs'] = results_stats_dic['n_correct_dogs'] / results_stats_dic['n_dogs_img'] * 100 # percentage of correctly classified dogs: A/B * 100
     results_stats_dic['pct_correct_breed'] = results_stats_dic['n_correct_breed'] / results_stats_dic['n_dogs_img'] * 100 # percentage of correctly classified dog breeds: E/B * 100
     results_stats_dic['pct_correct_notdogs'] = results_stats_dic['n_correct_notdogs'] / results_stats_dic['n_notdogs_img'] * 100 # percentage of correctly classified NON-dogs: C/D * 100
