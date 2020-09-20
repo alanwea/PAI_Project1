@@ -37,8 +37,8 @@
 #       results_dic dictionary that is passed into the function is a mutable
 #       data type so no return is needed.
 #
+
 def adjust_results4_isadog(results_dic, dogfile):
-  print('in adjust_results4_isadog', results_dic, dogfile)
   """
     Adjusts the results dictionary to determine if classifier correctly
     classified images 'as a dog' or 'not a dog' especially when not a match.
@@ -67,26 +67,42 @@ def adjust_results4_isadog(results_dic, dogfile):
                maltese) (string - indicates text file's filename)
     Returns:
            None - results_dic is mutable data type so no return needed.
-"""
+  """
+
   dognames_dic = dict()
-# Populate dognames_dic from the dognames file
+
+# read dogfile into dognames dictionary
   with open(dogfile, "r") as infile:
-    dognames_dic = [(line.rstrip() for line in infile)]
+    for line in infile:
+       dognames_dic[line.rstrip().lower()] = ''
+  infile.close()
 
+  pet_label = 0
+  classifier_label = 1
+  break_loop = 0
 
-  with open(dogfile, "r") as infile:
-        # Reads in dognames from first line in file
-        line = infile.readline().rstrip("\n")
+  for filename_key in results_dic:
+    if break_loop > 6:
+      break
+    # Get a key in results_dic
+    is_a = 0
+    as_a = 0
+    pet_info_list = results_dic[filename_key]
 
-        for key in results_dic:
-          # Get a key in results_dic
-          if results_dic[key][0] in dognames_dic:
-            # if the dog name value associated with the key is in the dognames file,
-            # then the results_dic record has been verified as being a dog
+    if pet_info_list[pet_label] in dognames_dic:
+#    if results_dic[filename_key][pet_label] in dognames_dic:
+# results_dic[dog Image file][pet image label, classifier label, 0=no match/1=labels do match]
+      is_a = 1
+
+    if pet_info_list[classifier_label] in dognames_dic:
+#    if results_dic[filename_key][classifier_label] in dognames_dic:
+      as_a = 1
+      # if the dog name value associated with the key is in the dognames file,
+      # then the results_dic record has been verified as being a dog
 #             if results_dic[key][1] in dognames_dic:
-                results_dic[key].extend((1, 1))
-          else:
-            results_dic[key].extend((0, 0))
+
+    results_dic[filename_key].extend([is_a, as_a ])
+    break_loop += 1
 
 #          res = next((sub for sub in results_dic if sub['is'] == line), None)
 #        print(res)

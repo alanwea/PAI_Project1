@@ -30,7 +30,7 @@ from time import time, sleep
 #       results_dic dictionary that is passed into the function is a mutable
 #       data type so no return is needed.
 #
-print('Setting args and calling classify_images')
+#print('Setting args and calling classify_images')
 images_dir = 'C:\\Users\\Alanwea\\Dropbox\\Udacity\\PythonAI\\Project1\\workspace\\pet_images'
 results_dic = ''
 model = ''
@@ -82,31 +82,34 @@ def classify_images(images_dir, results_dic, model):
      Returns:
            None - results_dic is mutable data type so no return needed.
     """
-    print('images dir', images_dir)
+#    print('images dir', images_dir)
 #    print(results_dic)
-    print(model)
+#    print(model)
 
 #          if in_files[idx] not in results_dic:
 #          results_dic[in_files[idx]] = [pet_label]
 
     break_count = 0
     for key in results_dic:
-      if break_count <=3:
+
+      if break_count >6:  # Short circut for testing
         break
+
       full_path = images_dir + key
       model_label = classifier(full_path, model)
-      model_label_normalized = model_label.lower().strip()
+      model_label_normalized = model_label.lower().strip()  # normalize the classifier string
 
-      dict_list = results_dic[key]
+      dict_list = results_dic[key]  # get the value of the current key, it should be a list
 
-      if dict_list[0] in model_label_normalized:
+      if dict_list[0] in model_label_normalized: # if first element of list = classifier
         match = int(1)
       else:
         match = int(0)
 #      results_dic[key].extend(model_label_normalized, match)
-      dict_list.append(model_label_normalized)
-      dict_list.extend(model_label_normalized)
-      dict_list.extend(str(match))
+
+#      dict_list.append(model_label_normalized)
+      dict_list.extend([model_label_normalized, match])
+#      dict_list.extend(str(match))
       results_dic[key] = dict_list
       print(f'Image {full_path} identified as {model_label_normalized}  {match}')
       break_count+=1
