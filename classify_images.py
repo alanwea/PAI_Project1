@@ -32,21 +32,6 @@ import mydebug
 #       results_dic dictionary that is passed into the function is a mutable
 #       data type so no return is needed.
 #
-#print('Setting args and calling classify_images')
-#images_dir = 'C:\\Users\\Alanwea\\Dropbox\\Udacity\\PythonAI\\Project1\\workspace\\pet_images'
-#results_dic = ''
-#model = ''
-
-#print('Testing time functions - 0 sec sleep')
-#start_time = time()
-#sleep(0)
-#end_time = time()
-#tot_time = end_time - start_time
-#print('Elapsed time is', end_time - start_time) # round?  otherwise get a really long number
-#print("\nTotal Elapsed Runtime:", str( int( (tot_time / 3600) ) ) + ":" +
-#          str( int(  ( (tot_time % 3600) / 60 )  ) ) + ":" +
-#          str( int(  ( (tot_time % 3600) % 60 ) ) ) )
-
 
 def classify_images(images_dir, results_dic, model):
     """
@@ -84,13 +69,6 @@ def classify_images(images_dir, results_dic, model):
      Returns:
            None - results_dic is mutable data type so no return needed.
     """
-#    print('images dir', images_dir)
-#    print(results_dic)
-#    print(model)
-
-#          if in_files[idx] not in results_dic:
-#          results_dic[in_files[idx]] = [pet_label]
-
     break_count = 0
     for key in results_dic:
 

@@ -54,6 +54,12 @@ def main():
     # Function that checks command line arguments using in_arg
     check_command_line_arguments(in_arg)
 
+    # From pathlib use Path to convert the relative path to an absolute.
+    # There is some discussion that .absolute() is hidden and .resolve() should be used, but
+    # test results from the field suggest that absolute works and resolve does not.  Another
+    # suggestion was to use Path.cwd() / path.
+    # https://discuss.python.org/t/pathlib-absolute-vs-resolve/2573
+    in_arg.dir = Path(in_arg.dir).absolute()
 
     # TODO 2: Define get_pet_labels function within the file get_pet_labels.py
     # Once the get_pet_labels function has been defined replace 'None'
@@ -65,12 +71,8 @@ def main():
 
     # According to get_pet_labels function documentation, the image.dir argument passed
     # in is supposed to be a 'full' path, while the command line path argument can be
-    # a relative path.  From pathlib use Path to convert the relative path to an absolute.
-    # There is some discussion that .absolute() is hidden and .resolve() should be used, but
-    # test results from the field suggest that absolute works and resolve does not.  Another
-    # suggestion was to use Path.cwd() / path.
-    # https://discuss.python.org/t/pathlib-absolute-vs-resolve/2573
-    results = get_pet_labels(Path(in_arg.dir).absolute())
+    # a relative path, that's why in_arg.dir is changed to a full path above
+    results = get_pet_labels(in_arg.dir)
 
     # Function that checks Pet Images in the results Dictionary using results
     check_creating_pet_image_labels(results)
