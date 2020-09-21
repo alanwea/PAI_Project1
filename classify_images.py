@@ -24,6 +24,8 @@
 from classifier import classifier
 from time import time, sleep
 
+import mydebug
+
 # TODO 3: Define classify_images function below, specifically replace the None
 #       below by the function definition of the classify_images function.
 #       Notice that this function doesn't return anything because the
@@ -92,7 +94,7 @@ def classify_images(images_dir, results_dic, model):
     break_count = 0
     for key in results_dic:
 
-      if break_count >6:  # Short circut for testing
+      if break_count > mydebug.break_limit:  # Short circut for testing
         break
 
       full_path = images_dir + key

@@ -42,6 +42,8 @@
 #       in the return statement with the results_stats_dic dictionary that you create
 #       with this function
 #
+import mydebug
+
 def calculates_results_stats(results_dic):
     """
     Calculates statistics of the results of the program run using classifier's model
@@ -86,11 +88,10 @@ def calculates_results_stats(results_dic):
 
     break_loop = 0
     for key in results_dic:
-        if break_loop > 6:
+        if break_loop > mydebug.break_limit:
             break
         if results_dic[key][3] == 1:
             results_stats_dic['n_dogs_img'] += 1  # B/number of dog images: [key][3] == 1
-        #results_stats_dic['n_images'] = len(results_dic) # Z/number of images - length of results_dic
         if results_dic[key][3] == 0:
             results_stats_dic['n_notdogs_img'] += 1 # D/NON-dog images: #images - #dog images OR [key][3] == 0
         if results_dic[key][2] == 1:

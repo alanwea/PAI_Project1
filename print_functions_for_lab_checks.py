@@ -18,6 +18,8 @@
 # running these functions with the appropriate input arguments within the
 # main() funtion will print out what's needed for "Checking your code"
 #
+import mydebug
+
 def check_command_line_arguments(in_arg):
     """
     For Lab: Classifying Images - 7. Command Line Arguments
@@ -112,7 +114,7 @@ def check_classifying_images(results_dic):
         print("\n     MATCH:")
         break_loop = 0
         for key in results_dic:
-            if break_loop >=6:
+            if break_loop > mydebug.break_limit:
                 break
             # Prints only if a Match Index 1 == 1
             if results_dic[key][2] == 1:
@@ -127,7 +129,7 @@ def check_classifying_images(results_dic):
         break_loop = 0
         print("\n NOT A MATCH:")
         for key in results_dic:
-            if break_loop >= 6:
+            if break_loop > mydebug.break_limit:
                 break
             # Prints only if NOT-a-Match Index 2 == 0
             if results_dic[key][2] == 0:
@@ -185,7 +187,7 @@ def check_classifying_labels_as_dogs(results_dic):
         # Prints all Matches first
         print("\n     MATCH:")
         for key in results_dic:
-            if break_loop > 6:
+            if break_loop > mydebug.break_limit:
                 break
             # Prints only if a Match Index 2 == 1
             if results_dic[key][2] == 1:
@@ -201,7 +203,7 @@ def check_classifying_labels_as_dogs(results_dic):
         # Prints all NOT-Matches next
         print("\n NOT A MATCH:")
         for key in results_dic:
-            if break_loop > 6:
+            if break_loop > mydebug.break_limit:
                 break
             # Prints only if NOT-a-Match Index 2 == 0
             if results_dic[key][2] == 0:
@@ -262,9 +264,10 @@ def check_calculating_results(results_dic, results_stats_dic):
 
         # Interates through results_dic dictionary to recompute the statistics
         # outside of the calculates_results_stats() function
-        break_loop = 0
+        break_loop = -1
         for key in results_dic:
-            if break_loop > 6:
+            break_loop += 1
+            if break_loop > mydebug.break_limit:
                 break
             # match (if dog then breed match)
             if results_dic[key][2] == 1:
@@ -303,7 +306,6 @@ def check_calculating_results(results_dic, results_stats_dic):
                     # NOT dog (classifier label)
                     if results_dic[key][4] == 0:
                         n_class_cnotd += 1
-                break_loop += 1
 
         # calculates statistics based upon counters from above
         n_pet_notd = n_images - n_pet_dog

@@ -37,6 +37,7 @@
 #       results_dic dictionary that is passed into the function is a mutable
 #       data type so no return is needed.
 #
+import mydebug
 
 def adjust_results4_isadog(results_dic, dogfile):
   """
@@ -79,10 +80,10 @@ def adjust_results4_isadog(results_dic, dogfile):
 
   pet_label = 0
   classifier_label = 1
-  break_loop = 0
 
+  break_loop = 0
   for filename_key in results_dic:
-    if break_loop > 6:
+    if break_loop > mydebug.break_limit:
       break
     # Get a key in results_dic
     is_a = 0
