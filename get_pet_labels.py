@@ -49,29 +49,10 @@ def get_pet_labels(image_dir):
     except:
       print('Exception: could not open ', image_dir)
 
-#    file_set = set(' '.join(item.split('_')[:-1]).lower().strip()
-
-
-#    file_set = set(in_files)
-#    file_list = list(file_set)
-
-#    print('All of in_files',in_files)
-#    for item in in_files:
-#      print(item)
-#      print(item.split('_'))
-#      print(item.split('_')[:-1])
-#      print(' '.join(item.split('_')[:-1]))
-
-#    for i in range(len(in_files)):
-#        results_dic[in_files[i]] = ' '.join(in_files[i].split('_')[:-1])
-
 # Iterate through the filenames in in_files.  For each, create a key from the filename and
 # a value from splitting the filename, truncating the filename number and extension, then
 # joining together whats left, converting to lower case and striping leading/training spaces
 # Bosten_terrier_02259.jpg ==> results_dic{Bosten_terrier_02259.jpg, [bosten terrier]}
-#    for pet_file in in_files:
-#        pet_label = [' '.join(pet_file.split('_')[:-1])]
-#        results_dic[pet_file] = [' '.join(pet_file.split('_')[:-1]).lower().strip()]
 
     for pet_file in in_files:
 #        pet_label = [' '.join(pet_file.split('_')[:-1])]

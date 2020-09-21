@@ -48,6 +48,7 @@ def main():
     # the user running the program from a terminal window. This function returns
     # the collection of these command line arguments from the function call as
     # the variable in_arg
+    #*** Implemented in VS CODE as launch.json configuration choice for each model
     in_arg = get_input_args()
 
     # Function that checks command line arguments using in_arg
@@ -66,7 +67,8 @@ def main():
     # in is supposed to be a 'full' path, while the command line path argument can be
     # a relative path.  From pathlib use Path to convert the relative path to an absolute.
     # There is some discussion that .absolute() is hidden and .resolve() should be used, but
-    # test results from the field suggest that absolute works and resolve does not.
+    # test results from the field suggest that absolute works and resolve does not.  Another
+    # suggestion was to use Path.cwd() / path.
     # https://discuss.python.org/t/pathlib-absolute-vs-resolve/2573
     results = get_pet_labels(Path(in_arg.dir).absolute())
 

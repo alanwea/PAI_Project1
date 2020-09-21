@@ -1,1 +1,3 @@
-break_limit = 5
+break_limit = 40
+#my_debug = True
+
