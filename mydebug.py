@@ -1,1 +1,1 @@
-break_limit = 10
+break_limit = 5
