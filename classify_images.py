@@ -71,7 +71,6 @@ def classify_images(images_dir, results_dic, model):
 
       full_path = str(images_dir) + "\\" + key
       model_label = classifier(full_path, model).lower().strip()
-#      model_label_normalized = model_label.lower().strip()  # normalize the classifier string
 
       dict_list = results_dic[key]  # get the value of the current key, it should be a list
 
