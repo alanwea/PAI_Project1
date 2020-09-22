@@ -24,8 +24,6 @@
 from classifier import classifier
 from time import time, sleep
 
-import mydebug
-
 # TODO 3: Define classify_images function below, specifically replace the None
 #       below by the function definition of the classify_images function.
 #       Notice that this function doesn't return anything because the
@@ -69,23 +67,17 @@ def classify_images(images_dir, results_dic, model):
      Returns:
            None - results_dic is mutable data type so no return needed.
     """
-
     for key in results_dic:
 
       full_path = str(images_dir) + "\\" + key
-      model_label = classifier(full_path, model)
-      model_label_normalized = model_label.lower().strip()  # normalize the classifier string
+      model_label = classifier(full_path, model).lower().strip()
+#      model_label_normalized = model_label.lower().strip()  # normalize the classifier string
 
       dict_list = results_dic[key]  # get the value of the current key, it should be a list
 
-      if dict_list[0] in model_label_normalized: # if first element of list = classifier
-        match = int(1)
-      else:
-        match = int(0)
+      match = int(1) if dict_list[0] in model_label else int(0)
 
-      match = int(1) if dict_list[0] in model_label_normalized else int(0)
-
-      dict_list.extend([model_label_normalized, match])
+      dict_list.extend([model_label, match])
       results_dic[key] = dict_list
 
     None

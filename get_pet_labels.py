@@ -18,6 +18,7 @@
 ##
 # Imports python modules
 from os import listdir, path
+import sys # for try...except
 
 # TODO 2: Define get_pet_labels function below please be certain to replace None
 #       in the return statement with results_dic dictionary that you create
@@ -47,7 +48,7 @@ def get_pet_labels(image_dir):
     try:
       in_files = listdir(image_dir)
     except:
-      print('Exception: could not open ', image_dir)
+      sys.exit('Exception: listdir path invalid ', image_dir)
 
 # Iterate through the filenames in in_files.  For each, create a key from the filename and
 # a value from splitting the filename, truncating the filename number and extension, then

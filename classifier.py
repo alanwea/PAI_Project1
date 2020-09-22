@@ -13,15 +13,18 @@ vgg16 = models.vgg16(pretrained=True)
 models = {'resnet': resnet18, 'alexnet': alexnet, 'vgg': vgg16}
 
 # obtain ImageNet labels
-with open('imagenet1000_clsid_to_human.txt') as imagenet_classes_file:
-    imagenet_classes_dict = ast.literal_eval(imagenet_classes_file.read())
+try:
+    with open('imagenet1000_clsid_to_human.txt') as imagenet_classes_file:
+        imagenet_classes_dict = ast.literal_eval(imagenet_classes_file.read())
+except:
+    sys.exit('Exception: unable to open the ImageNet label file')
 
 def classifier(img_path, model_name):
     # load the image
     try:
         img_pil = Image.open(img_path)
     except: # has not been tested
-        sys.exit("Unable to open " + img_path)
+        sys.exit("Exception: unable to open " + img_path)
 
     # define transforms
     preprocess = transforms.Compose([
