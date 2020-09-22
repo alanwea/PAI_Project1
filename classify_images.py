@@ -69,13 +69,10 @@ def classify_images(images_dir, results_dic, model):
      Returns:
            None - results_dic is mutable data type so no return needed.
     """
-    break_count = 0
+
     for key in results_dic:
 
-      if break_count > mydebug.break_limit:  # Short circut for testing
-        break
-
-      full_path = images_dir + key
+      full_path = str(images_dir) + "\\" + key
       model_label = classifier(full_path, model)
       model_label_normalized = model_label.lower().strip()  # normalize the classifier string
 
@@ -85,17 +82,10 @@ def classify_images(images_dir, results_dic, model):
         match = int(1)
       else:
         match = int(0)
-#      results_dic[key].extend(model_label_normalized, match)
 
-#      dict_list.append(model_label_normalized)
+      match = int(1) if dict_list[0] in model_label_normalized else int(0)
+
       dict_list.extend([model_label_normalized, match])
-#      dict_list.extend(str(match))
       results_dic[key] = dict_list
-      print(f'Image {full_path} identified as {model_label_normalized}  {match}')
-      break_count+=1
-
-    #NEW - index 1 = classifier label (string)
-    #NEW - index 2 = 1/0 (int)  where 1 = match between pet image
-    #results_dic extend function
 
     None

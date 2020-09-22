@@ -4,6 +4,7 @@ import torchvision.transforms as transforms
 from torch.autograd import Variable
 import torchvision.models as models
 from torch import __version__
+import sys # to exit try..excepts
 
 resnet18 = models.resnet18(pretrained=True)
 alexnet = models.alexnet(pretrained=True)
@@ -17,7 +18,10 @@ with open('imagenet1000_clsid_to_human.txt') as imagenet_classes_file:
 
 def classifier(img_path, model_name):
     # load the image
-    img_pil = Image.open(img_path)
+    try:
+        img_pil = Image.open(img_path)
+    except: # has not been tested
+        sys.exit("Unable to open " + img_path)
 
     # define transforms
     preprocess = transforms.Compose([
