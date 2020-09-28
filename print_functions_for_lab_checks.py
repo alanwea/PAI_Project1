@@ -18,7 +18,6 @@
 # running these functions with the appropriate input arguments within the
 # main() funtion will print out what's needed for "Checking your code"
 #
-import mydebug
 
 def check_command_line_arguments(in_arg):
     """
