@@ -89,14 +89,9 @@ def print_results(results_dic, results_stats_dic, model,
         #
     for key in results_stats_dic:
       if key[:3] == 'pct': # I don't like just "p", not specific enough
-            print(key, results_stats_dic[key])
+            print("{:20} {:3f}".format(key, round(results_stats_dic[key], 2)))
 
-# assignments to make is easier to understand following code
-    pet_name = 0
-    ai_classification = 1
-    name_class_match = 2
-    isa_dog = 3
-    asa_dog = 4
+# {:20}: {:3d}".format('N Not-Dog Images', results_stats_dic['n_notdogs_img']
 # INCORRECTLY CLASSIFIED DOGS
 # If pet name does not match pet classifier results_dic[2] == 0, but either
 # [3] or [4] is 1 then, non-dog has been classified as a dog
@@ -105,29 +100,16 @@ def print_results(results_dic, results_stats_dic, model,
 
     # IF print_incorrect_dogs == True AND there were images incorrectly
     # classified as dogs or vice versa - print out these cases
-    if (print_incorrect_dogs and
-        ( (results_stats_dic['n_correct_dogs'] + results_stats_dic['n_correct_notdogs'])
-          != results_stats_dic['n_images'] )
-        ):
+    if (print_incorrect_dogs
+        and ((results_stats_dic['n_correct_dogs']
+        + results_stats_dic['n_correct_notdogs'])
+        != results_stats_dic['n_images'])):
         print("\nINCORRECT Dog/NOT Dog Assignments:")
 
         # process through results dict, printing incorrectly classified dogs
         for key in results_dic:
-          # if [2] = 1: pet is a dog, if [3][4] is 00,01, 10 then incorrect classification
-          # if [2] = 0: pet is not a dog, if [3][4] = 11, 01, 10 then incorrect classification
-#          if results_dic[key][2] == 1:
-#            if results_dic[key][3] == 0 and results_dic[key][4] == 0 or results_dic[key][3] == 0 and results_dic[key][4] == 1 or results_dic[key][3] == 1 and results_dic[key][4] == 0:
-#              print(results_dic[key][0], results_dic[key][1])
-#          if results_dic[key][2] == 0 and results_dic[key][3] == 1: # filter out non-dogs
-#            if (results_dic[key][3] == 1
-#              and results_dic[key][4] == 1
-#              or results_dic[key][3] == 0
-#              and results_dic[key][4] == 1
-#              or results_dic[key][3] == 1
-#              and results_dic[key][4] == 0):
-              if sum(results_dic[key][3:]) == 1:
+              if sum(results_dic[key][3:]) == 1: # is/asa is 01 or 10
                 print(results_dic[key][0], results_dic[key][1])
-
 
             # TODO: 6c. REPLACE pass with CODE that prints out the pet label
             #           and the classifier label from results_dic dictionary
@@ -161,9 +143,9 @@ def print_results(results_dic, results_stats_dic, model,
 
             # Pet Image Label is-a-Dog, classified as-a-dog but is WRONG breed
             # [3:] provided by assignment
-            if (results_dic[key][isa_dog] == 1
-                and results_dic[key][asa_dog] == 1
-                and results_dic[key][2] == 0):
-                  print("Real: {:>26}   Classifier: {:>30}".format(results_dic[key][pet_name], results_dic[key][ai_classification]))
+            if (    results_dic[key][2] == 0
+                and results_dic[key][3] == 1
+                and results_dic[key][4] == 1):
+                  print("Real: {:>26}   Classifier: {:>30}".format(results_dic[key][0], results_dic[key][1]))
 
 None
