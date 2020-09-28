@@ -89,7 +89,7 @@ def print_results(results_dic, results_stats_dic, model,
         #
     for key in results_stats_dic:
       if key[:3] == 'pct': # I don't like just "p", not specific enough
-            print("{:20} {:3f}".format(key, round(results_stats_dic[key], 2)))
+            print("{:20} {}".format(key, round(results_stats_dic[key], 2)))
 
 # {:20}: {:3d}".format('N Not-Dog Images', results_stats_dic['n_notdogs_img']
 # INCORRECTLY CLASSIFIED DOGS

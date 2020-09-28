@@ -112,33 +112,24 @@ def check_classifying_images(results_dic):
 
         # Prints all Matches first
         print("\n     MATCH:")
-        break_loop = 0
-        for key in results_dic:
-            if break_loop > mydebug.break_limit:
-                break
-            # Prints only if a Match Index 1 == 1
-            if results_dic[key][2] == 1:
 
+        for key in results_dic:
+            # Prints only if a Match Index 2 == 1
+            if results_dic[key][2] == 1:
                 # Increments Match counter
                 n_match += 1
-                print("\n{:>30}: \nReal: {:>26}   Classifier: {:>30}".format(key,
+                print("\n{:>10}: Real: {:>15}   Classifier: {:>30}".format(key,
                       results_dic[key][0], results_dic[key][1]))
-            break_loop+=1
 
         # Prints all NOT-Matches next
-        break_loop = 0
         print("\n NOT A MATCH:")
         for key in results_dic:
-            if break_loop > mydebug.break_limit:
-                break
             # Prints only if NOT-a-Match Index 2 == 0
             if results_dic[key][2] == 0:
-
                 # Increments Not-a-Match counter
                 n_notmatch += 1
-                print("\n{:>30}: \nReal: {:>26}   Classifier: {:>30}".format(key,
+                print("\n{:>10}: Real: {:>15}   Classifier: {:>30}".format(key,
                       results_dic[key][0], results_dic[key][1]))
-            break_loop += 1
 
         # Prints Total Number of Images - expects 40 from pet_images folder
         print("\n# Total Images",n_match + n_notmatch, "# Matches:",n_match ,
@@ -183,12 +174,9 @@ def check_classifying_labels_as_dogs(results_dic):
         n_match = 0
         n_notmatch = 0
 
-        break_loop = 0
         # Prints all Matches first
         print("\n     MATCH:")
         for key in results_dic:
-            if break_loop > mydebug.break_limit:
-                break
             # Prints only if a Match Index 2 == 1
             if results_dic[key][2] == 1:
 
@@ -197,14 +185,10 @@ def check_classifying_labels_as_dogs(results_dic):
                 print("\n{:>30}: \nReal: {:>26}   Classifier: {:>30}  \nPetLabelDog: {:1d}  ClassLabelDog: {:1d}".format(key,
                       results_dic[key][0], results_dic[key][1], results_dic[key][3],
                       results_dic[key][4]))
-            break_loop += 1
 
-        break_loop = 0
         # Prints all NOT-Matches next
         print("\n NOT A MATCH:")
         for key in results_dic:
-            if break_loop > mydebug.break_limit:
-                break
             # Prints only if NOT-a-Match Index 2 == 0
             if results_dic[key][2] == 0:
 
@@ -213,7 +197,6 @@ def check_classifying_labels_as_dogs(results_dic):
                 print("\n{:>30}: \nReal: {:>26}   Classifier: {:>30}  \nPetLabelDog: {:1d}  ClassLabelDog: {:1d}".format(key,
                       results_dic[key][0], results_dic[key][1], results_dic[key][3],
                       results_dic[key][4]))
-            break_loop += 1
 
         # Prints Total Number of Images - expects 40 from pet_images folder
         print("\n# Total Images",n_match + n_notmatch, "# Matches:",n_match ,
