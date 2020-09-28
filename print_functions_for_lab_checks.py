@@ -247,11 +247,7 @@ def check_calculating_results(results_dic, results_stats_dic):
 
         # Interates through results_dic dictionary to recompute the statistics
         # outside of the calculates_results_stats() function
-        break_loop = -1
         for key in results_dic:
-            break_loop += 1
-            if break_loop > mydebug.break_limit:
-                break
             # match (if dog then breed match)
             if results_dic[key][2] == 1:
 
