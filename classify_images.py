@@ -22,7 +22,6 @@
 ##
 # Imports classifier function for using CNN to classify images
 from classifier import classifier
-from time import time, sleep
 
 # TODO 3: Define classify_images function below, specifically replace the None
 #       below by the function definition of the classify_images function.
@@ -70,13 +69,13 @@ def classify_images(images_dir, results_dic, model):
     for key in results_dic:
 
       full_path = str(images_dir) + "\\" + key
+# Should put a try...except here
       model_label = classifier(full_path, model).lower().strip()
-
-      dict_list = results_dic[key]  # get the value of the current key, it should be a list
-
-      match = int(1) if dict_list[0] in model_label else int(0)
-
-      dict_list.extend([model_label, match])
-      results_dic[key] = dict_list
+      match = int(1) if results_dic[key][0] in model_label else int(0)
+      results_dic[key] = results_dic[key] + [model_label, match]
+#???? Originally created a list dict_list, extended model_label and match and wrote it
+# back into results_dic.  It was working, then today 9/25, it stopped working and replaced
+# results_dic list value with None.
+#      results_dic[key]= dict_list.extend([model_label, match])
 
     None
