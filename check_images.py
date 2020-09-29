@@ -44,8 +44,6 @@ def main():
     # TODO 0: Measures total program runtime by collecting start time
     start_time = time()
 
-#return '%02d:%02d:%02d' % (hours, mins, secs)
-
     # TODO 1: Define get_input_args function within the file get_input_args.py
     # This function retrieves 3 Command Line Arugments from user as input from
     # the user running the program from a terminal window. This function returns
@@ -129,8 +127,11 @@ def main():
 
     # TODO 0: Measure total program runtime by collecting end time
     # TODO 0: Computes overall runtime in seconds & prints it in hh:mm:ss format
-    # Adapted from: https://bbs.archlinux.org/viewtopic.php?id=77634
-    print(f'\nExecution duration {timedelta(seconds=(time() - start_time))}')
+    # From: https://stackoverflow.com/questions/7999935/python-datetime-to-string-without-microsecond-component
+
+    hours, remainder = divmod(time()-start_time, 3600)
+    minutes, seconds = divmod(remainder, 60)
+    print('\nExecution time {:02}:{:02}:{:02}'.format(int(hours), int(minutes), int(seconds)))
 
 # Call to main function to run the program
 if __name__ == "__main__":
