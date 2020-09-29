@@ -1,5 +1,6 @@
 alexnet_pet-images.txt
 resnet_pet-images.txt
+vgg_pet-images.txt
 resnet_pet-images_switch_incorrect_dog.txt
 resnet_pet-images_switch_incorrect_both.txt
 resnet_pet-images_switch_incorrect_breed.txt
