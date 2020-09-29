@@ -298,4 +298,4 @@ Real:                     beagle   Classifier:  walker hound, walker foxhound
 Real:           golden retriever   Classifier:                       leonberg
 Real:             great pyrenees   Classifier:                         kuvasz
 
-Execution duration 0:00:23.213328
+Execution time 00:00:23

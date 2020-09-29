@@ -293,4 +293,4 @@ pct_match            82.5
 INCORRECT Dog/NOT Dog Assignments:
 cat norwegian elkhound, elkhound
 
-Execution duration 0:00:22.485286
+Execution time 00:00:23

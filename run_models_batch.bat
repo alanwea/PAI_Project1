@@ -1,8 +1,8 @@
 echo off
 rem uncomment skip for production
 rem uncomment switchtest to test class and breed error check listings with resnet, it executes the fastest
-rem goto skip
-goto switchtest
+goto skip
+#goto switchtest
 rem PURPOSE: Runs all three models to test which provides 'best' solution.
 rem          Please note output from each run has been piped into a text file.
 rem
@@ -13,6 +13,7 @@ echo on
 python check_images.py --dir pet_images/ --arch resnet --dogfile dognames.txt > resnet_pet-images.txt
 python check_images.py --dir pet_images/ --arch alexnet --dogfile dognames.txt > alexnet_pet-images.txt
 python check_images.py --dir pet_images/ --arch vgg  --dogfile dognames.txt > vgg_pet-images.txt
+Exit
 
 :switchtest
 echo on
