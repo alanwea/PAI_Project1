@@ -48,6 +48,12 @@ def get_input_args():
                         help='architecture to use')
     parser.add_argument('--dogfile', type=str, default='dognames.txt',
                         help='path to text file of image names')
+# default values for next two are defined on call to print_results()
+    parser.add_argument('--incorrect_dog', default=False, action='store_true',
+                        help='list incorrect dog classifications')
+    parser.add_argument('--incorrect_breed', default=False, action='store_true',
+                        help='list incorrect breed matches')
+
 
 
     # Replace None with parser.parse_args() parsed argument collection that

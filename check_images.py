@@ -125,7 +125,7 @@ def main():
     # Prints summary results, incorrect classifications of dogs (if requested)
     # and incorrectly classified breeds (if requested)
 
-    print_results(results, results_stats, in_arg.arch, True, True)
+    print_results(results, results_stats, in_arg.arch, in_arg.incorrect_dog, in_arg.incorrect_breed)
 
     # TODO 0: Measure total program runtime by collecting end time
     # TODO 0: Computes overall runtime in seconds & prints it in hh:mm:ss format

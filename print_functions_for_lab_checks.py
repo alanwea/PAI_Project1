@@ -35,7 +35,8 @@ def check_command_line_arguments(in_arg):
     else:
         # prints command line agrs
         print("Command Line Arguments:\n     dir =", in_arg.dir,
-              "\n    arch =", in_arg.arch, "\n dogfile =", in_arg.dogfile)
+              "\n    arch =", in_arg.arch, "\n    dogfile =", in_arg.dogfile,
+              "\n    incorrect_dog =", in_arg.incorrect_dog,  "\n    incorrect_breed =", in_arg.incorrect_breed)
 
 def check_creating_pet_image_labels(results_dic):
     """    For Lab: Classifying Images - 9/10. Creating Pet Image Labels
