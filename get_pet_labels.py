@@ -18,6 +18,7 @@
 ##
 # Imports python modules
 from os import listdir, path
+import re
 import sys # for try...except
 
 # TODO 2: Define get_pet_labels function below please be certain to replace None
@@ -50,13 +51,15 @@ def get_pet_labels(image_dir):
     except:
       sys.exit('Exception: listdir path invalid ', image_dir)
 
-# Iterate through the filenames in in_files.  For each, create a key from the filename and
-# a value from splitting the filename, truncating the filename number and extension, then
-# joining together whats left, converting to lower case and striping leading/training spaces
+# Iterate through the filenames in in_files.  Using an RE, exclude filenames where the first
+# character is not alphabetic.  Otherwise, create a dictionary key from the filename and
+# an associated value as a list that contains the lowercase, whitespace truncated, pet name.
 # Bosten_terrier_02259.jpg ==> results_dic{Bosten_terrier_02259.jpg, [bosten terrier]}
 
     for pet_file in in_files:
-        results_dic[pet_file] = [' '.join(pet_file.split('_')[:-1]).lower().strip()]
+      results_dic[pet_file] = ( [' '.join(pet_file.split('_')[:-1]).lower().strip()]
+                                if re.search('^[a-zA-Z].*', pet_file)
+                                else next)
 
     # Replace None with the results_dic dictionary that you created with this
     # function
