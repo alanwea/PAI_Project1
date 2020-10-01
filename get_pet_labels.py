@@ -18,7 +18,7 @@
 ##
 # Imports python modules
 from os import listdir, path
-import re
+import re  # not good form to inlcude everything, but importing just re.search didn't work
 import sys # for try...except
 
 # TODO 2: Define get_pet_labels function below please be certain to replace None
